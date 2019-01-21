@@ -13,7 +13,8 @@ def home
 def create
   @user = User.new(user_params)
   if @user.save
-  	login(params[:user][:email], params[:user][:password])
+  	login(params[:user][:email], params[:user][:password],params[:user][:name],
+      params[:user][:user_type])
     redirect_to root_url, :notice => "Signed up!"
   else
     render :new
@@ -23,6 +24,6 @@ end
 
 private
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, :name, :user_type)
   end
 end

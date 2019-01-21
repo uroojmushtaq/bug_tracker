@@ -1,20 +1,25 @@
-<nav class="navbar navbar-inverse">
+<nav style="height:100px" class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">
           <img style="max-width:50px; margin-top: -7px;"
              src="/images.png">
-             <span style = "margin-top: 0px" id="logo"> Bug Tracking System</span>
+             <span id="logo"> Bug Tracking System</span>
      </a>
     </div>
+     <% if current_user %>
     <ul style="font-size: 20px" class="nav nav-tabs">
       <li  class="active"><a href="#">Projects</a></li>
       <li><a href="#">Bugs</a></li>
+       <% if current_user.user_type == "1" %>
+      
       <li><a href="#">Developors</a></li>
       <li><a href="#">QA</a></li>
+      <% end %>
     </ul>
+    <% end %>
 
-    <ul style="font-size: 15px" class="nav navbar-nav navbar-right">
+    <ul style="font-size: 15px;" class="nav navbar-nav navbar-right">
 
       <% if current_user %>
       Logged in as <%= current_user.email %>.
@@ -22,16 +27,10 @@
       
       <% else %>
        
-       <!--  <%= link_to "Sign up", signup_path %> or
-      <%= link_to  "log in", login_path %>. -->
-
-
-       <li><a href="/users/new"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> or
+       <li style="margin-top: 30px"><a href="/users/new"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> or
       <li><a href="/sessions/new"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>.
       <% end %>
 
-      <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
     </ul>
   </div>
 </nav>

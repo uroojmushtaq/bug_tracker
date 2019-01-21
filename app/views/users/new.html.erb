@@ -9,6 +9,18 @@
       </ul>
     </div>
   <% end %>
+
+	<div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+    <div class="field">
+  	 <label>User Type</label>
+  <%= f.select :user_type, options_for_select(user_options), { prompt: 'Select user type' } %>
+  </div>
+
+
   <div class="field">
     <%= f.label :email %>
     <%= f.text_field :email %>
@@ -23,3 +35,5 @@
   </div>
   <div class="actions"><%= f.submit %></div>
 <% end %>
+
+ 
