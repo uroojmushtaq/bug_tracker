@@ -9,22 +9,42 @@
     </div>
      <% if current_user %>
     <ul style="font-size: 20px" class="nav nav-tabs">
-      <li  class="active"><a href="#">Projects</a></li>
-      <li><a href="#">Bugs</a></li>
-       <% if current_user.user_type == "1" %>
+
+
+     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Projects <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/projects">View all Projects</a></li>
+          <li><%= link_to 'New Project', new_project_path %></li>
+        </ul>
+      </li>
+
+
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Bugs <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/bugs">View all Bugs</a></li>
+          <li><%= link_to 'New Bug', new_bug_path %></li>
+        </ul>
+      </li>
+
+
+       <% if current_user.user_type== "manager" %>
       
-      <li><a href="#">Developors</a></li>
-      <li><a href="#">QA</a></li>
+      <!-- <li><a href="users/view_developers">Developors</a></li> -->
+       <li><%= link_to 'Developors', view_developers_path %></li>
+      <li><%= link_to 'QA', view_qa_list_path %></li>
       <% end %>
     </ul>
     <% end %>
+        
+
 
     <ul style="font-size: 15px;" class="nav navbar-nav navbar-right">
-
+        
       <% if current_user %>
-      Logged in as <%= current_user.email %>.
-      <%= link_to "Log out", logout_path %>
-      
+       <!--  <li style="color:#FDFAFA";>Logged in as <%= current_user.email %>.</li> -->
+        <li style="color:#FFFFFF"><%= link_to "Manage Profile", current_user %></li>
+        <li><%= link_to "Log out", logout_path %></li>
+        
       <% else %>
        
        <li style="margin-top: 30px"><a href="/users/new"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> or

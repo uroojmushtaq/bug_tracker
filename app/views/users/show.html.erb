@@ -1,0 +1,27 @@
+<!-- <p id="notice"><%= notice %></p> -->
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Job Title:</strong>
+  <%= @user.user_type %>
+</p>
+
+ <p>
+  <strong>Image:</strong>
+  <%= image_tag(@user.image.url, :style => "border: 1px solid grey;max-width:80px;") %>
+</p>
+
+
+
+
+<%= link_to 'Back', users_path %>
+<%= link_to 'Edit', edit_user_path %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Project name:</strong>
+  <%= @project.project_name %>
+</p>
+
+<p>
+  <strong>Assigned to:</strong>
+  <%= @project.user.try(:name) %>
+</p>
+
+<p>
+  <strong>Created by:</strong>
+  <%= @project.created_by %>
+</p>
+
+ 
+<%= link_to 'Back', projects_path %>

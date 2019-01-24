@@ -1,0 +1,31 @@
+<h1>Quality Assurance</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Project Assigned</th>
+      <!-- <th colspan="3"></th> -->
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email%></td>
+
+        <% if user.projects.any? %>
+          <td><% user.projects.each do |project|%>
+            <%= project.project_name %>
+          <%end%>
+          </td>
+        <% end %>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>

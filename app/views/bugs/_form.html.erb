@@ -1,0 +1,60 @@
+<%= form_for(@bug) do |f| %>
+  <% if @bug.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bug.errors.count, "error") %> prohibited this bug from being saved:</h2>
+
+      <ul>
+      <% @bug.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+
+   <div class="field">
+     <label>Project Name:</label><br>
+      <%= f.select(:project_id ,options_from_collection_for_select(@projects, :id, :project_name))%>
+  </div>
+
+  <div class="field">
+    <%= f.label :deadline %><br>
+    <%= f.datetime_select :deadline %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :bug_type %><br>
+    <%= f.select :bug_type, options_for_select(bug_options), { prompt: 'Select type' },
+    :onchange => "myfunction();" %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.select :status, options_for_select([[]]), { prompt: 'Select status' }
+     %>
+  </div>
+
+
+  <% if current_user.user_type == "3" %>
+  <div class="field">
+    <%= f.label :assigned_to %><br>
+    <%= f.number_field :assigned_to %>
+  </div>
+  <% end %>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,43 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %> 
+
+	<div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+    <div class="field">
+  	 <label>User Type</label>
+  <%= f.select :user_type, options_for_select(user_options ,:selected => @user.user_type) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= image_tag(@user.image.url, :style => "border: 1px solid grey;max-width:80px;") %>
+
+    <%= f.file_field :image %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :email %>
+    <%=@user.email %>
+  </div>
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+    
+  <div class="actions"><%= f.submit %></div>
+<% end %>
+
+ 

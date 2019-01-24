@@ -11,7 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190121101250) do
+ActiveRecord::Schema.define(version: 20190123112330) do
+
+  create_table "bugs", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.datetime "deadline"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "bug_type"
+    t.string   "status"
+    t.integer  "assigned_to"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "project_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "project_name"
+    t.integer  "assigned_to"
+    t.integer  "created_by"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                        null: false
@@ -23,6 +47,10 @@ ActiveRecord::Schema.define(version: 20190121101250) do
     t.datetime "remember_me_token_expires_at"
     t.string   "name"
     t.string   "user_type"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

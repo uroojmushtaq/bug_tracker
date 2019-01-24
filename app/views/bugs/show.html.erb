@@ -1,0 +1,43 @@
+<!-- <p id="notice"><%= notice %></p> -->
+
+<p>
+  <strong>Title:</strong>
+  <%= @bug.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @bug.description %>
+</p>
+
+<p>
+  <strong>Deadline:</strong>
+  <%= @bug.deadline %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag(@bug.image.url) if @bug.image.exists? %>
+</p>
+
+<p>
+  <strong>Bug type:</strong>
+  <% if @bug.bug_type == "1" %>
+    Bug
+  <%  else %>
+    Feature
+  <% end %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @bug.status %>
+</p>
+
+<p>
+  <strong>Assigned to:</strong>
+  <%= @bug.assigned_to %>
+</p>
+
+<%= link_to 'Edit', edit_bug_path(@bug) %> |
+<%= link_to 'Back', bugs_path %>

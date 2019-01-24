@@ -1,11 +1,20 @@
 Rails.application.routes.draw do
+  resources :bugs
+  resources :projects
   resources :users
   resources :sessions
 root  'users#home'
   
   get "logout" => "sessions#destroy", :as => "logout"
-  get "login" => "sessions#new", :as => "login"
-  get "signup" => "users#new", :as => "signup"
+  get "login" => "sessions#new",  :as => "login"
+  get "signup" => "users#new",   :as => "signup"
+  match '/view_projects',         to: 'projects#view_projects', via: 'get'
+  match '/view_developers',       to: 'users#view_developers', via: 'get'
+  match '/view_qa_list',           to: 'users#view_qa_list', via: 'get'
+  match '/details',                to: 'users#details', via: 'get'
+  #match '/edit/:id',                to: 'users#edit', via: 'get'
+
+  # get '/users/view_developers'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

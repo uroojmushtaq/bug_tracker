@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+before_action :set_user, only: [:show, :edit, :update]
 skip_before_action :require_login, only: [:new, :create]
 
  def new
@@ -7,11 +7,35 @@ skip_before_action :require_login, only: [:new, :create]
 end
 
 def home
-	end
+end
+
+def show
+end
+
+def edit
+end
+
+def update
+  if @user.update(user_params)
+    redirect_to current_user, :notice => "Profile Updated!"
+  end
+  
+else
+
+end
+
+def view_developers
+  @users = User.where(:user_type => "developer")
+end
+
+def view_qa_list
+   @users = User.where(:user_type => "qa")
+end
 
 
 def create
   @user = User.new(user_params)
+
   if @user.save
   	login(params[:user][:email], params[:user][:password],params[:user][:name],
       params[:user][:user_type])
@@ -22,8 +46,14 @@ def create
 end
 
 
-private
+  private
+
+   def set_user
+      @user = User.find(params[:id])
+    end
+
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name, :user_type)
+    params.require(:user).permit(:email, :password,
+     :password_confirmation, :name, :user_type, :image)
   end
 end
