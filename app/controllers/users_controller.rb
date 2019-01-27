@@ -1,12 +1,16 @@
-class UsersController < ApplicationController
-before_action :set_user, only: [:show, :edit, :update]
-skip_before_action :require_login, only: [:new, :create]
-
+  class UsersController < ApplicationController
+before_action :set_user, only: [:show, :edit, :update,:view_qa_projects]
+skip_before_action :require_login, only: [:home, :new, :create]
+#before_action :require_login, only: [:view_developers, :edit]
  def new
   @user = User.new
 end
 
 def home
+end
+
+def index
+  redirect_to root_url
 end
 
 def show
@@ -31,6 +35,9 @@ end
 def view_qa_list
    @users = User.where(:user_type => "qa")
 end
+
+ def view_qa_projects
+ end
 
 
 def create

@@ -4,7 +4,12 @@ class BugsController < ApplicationController
   # GET /bugs
   # GET /bugs.json
   def index
+    if(current_user.user_type == "developer")
+      @bugs = current_user.bugs
+    else
     @bugs = Bug.all
+  
+    end
   end
 
   # GET /bugs/1
@@ -15,18 +20,20 @@ class BugsController < ApplicationController
   # GET /bugs/new
   def new
     @bug = Bug.new
-    @projects = Project.all
+    @projects = Project.all  
+    @users = User.where(:user_type => "developer")
+  
   end
 
   # GET /bugs/1/edit
   def edit
+        @users = User.where(:user_type => "developer")
   end
 
   # POST /bugs
   # POST /bugs.json
   def create
     @bug = Bug.new(bug_params)
-
     respond_to do |format|
       if @bug.save
         format.html { redirect_to @bug, notice: 'Bug was successfully created.' }

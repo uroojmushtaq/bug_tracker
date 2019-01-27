@@ -1,19 +1,23 @@
-<p id="notice"><%= notice %></p>
 
-<p>
+<div class="projectshow">
+	<p id="notice"><%= notice %></p>
+
+<p class = "paraClass">
   <strong>Project name:</strong>
   <%= @project.project_name %>
 </p>
 
-<p>
+<p class = "paraClass">
   <strong>Assigned to:</strong>
   <%= @project.user.try(:name) %>
 </p>
 
-<p>
+<p class = "paraClass">
   <strong>Created by:</strong>
   <%= @project.created_by %>
 </p>
 
  
-<%= link_to 'Back', projects_path %>
+<%= link_to 'Back', projects_path,{:style=>'color:#0000FF;font-size:20px'}  %>
+</div>
+

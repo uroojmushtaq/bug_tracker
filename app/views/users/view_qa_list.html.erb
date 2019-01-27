@@ -1,12 +1,13 @@
 <h1>Quality Assurance</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>ID</th>
       <th>Name</th>
       <th>Email</th>
       <th>Project Assigned</th>
+      <th>Profile Picture</th>
       <!-- <th colspan="3"></th> -->
     </tr>
   </thead>
@@ -20,10 +21,11 @@
 
         <% if user.projects.any? %>
           <td><% user.projects.each do |project|%>
-            <%= project.project_name %>
+            <%= project.project_name+"," %>
           <%end%>
           </td>
         <% end %>
+        <td><%= image_tag(user.image.url, :style => "border: 1px solid grey;max-width:65px;border-radius:5px") %><td>
         
       </tr>
     <% end %>

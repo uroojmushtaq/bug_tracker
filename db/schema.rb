@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190123112330) do
+ActiveRecord::Schema.define(version: 20190125095347) do
 
   create_table "bugs", force: :cascade do |t|
     t.string   "title"
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(version: 20190123112330) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.integer  "project_id"
+  end
+
+  create_table "project_managers", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "created_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "projects", force: :cascade do |t|

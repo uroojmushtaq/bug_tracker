@@ -1,32 +1,25 @@
-<%= form_for(@project) do |f| %>
-  <% if @project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+<div class="signup">
+  <%= form_for(@project) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
 
-      <ul>
-      <% @project.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class="field">
+    <%= f.label :project_name, class: "control-label" %><br>
+    <%= f.text_field :project_name, class: "form-control", :required => true %>
+  </div>
 
   <div class="field">
      <label>Assigned To:</label>
-        <%= f.select(:assigned_to ,options_from_collection_for_select(@users, :id, :name)) %>
-
-  </div>
-
-  <div class="field">
-    <%= f.label :project_name %><br>
-    <%= f.text_field :project_name %>
+        <%= f.select(:assigned_to ,options_from_collection_for_select(@users, :id, :name), { prompt: 'Select Option' },:required => true) %>
   </div>
  
   <div class="field">
-    <%= f.label :created_by %><br>
-    <%= f.number_field :created_by, :value => current_user.id %>
-  </div>
+    <%= f.label :created_by, class: "control-label" %><br>
+  <%= f.number_field :created_by, :value => current_user.id %>
+ </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Create New Project", class: "btn btn-primary btn-lg" %>
   </div>
 <% end %>
+<%= link_to 'Back', projects_path,{:style=>'color:#0000FF;font-size:20px'}  %>
+</div>

@@ -1,0 +1,65 @@
+<%= form_for(@bug) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="field">
+    <%= f.label :title, class: "control-label" %><br>
+    <%= f.text_field :title, class: "control-label", :required => true   %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+
+   <div class="field">
+     <label>Project Name:</label><br>
+      <%= @bug.project.project_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :deadline %><br>
+    <%= f.datetime_select :deadline %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= image_tag(@bug.image.url, :style => "border: 1px solid grey;max-width:80px;") %>
+    <%= f.file_field :image %>
+  </div>
+  <div class="field">
+	   <p>
+	  <strong>Bug type:</strong>
+	  <% if @bug.bug_type == "bug" %>
+	    Bug
+	  <%  else %>
+	    Feature
+	  <% end %>
+	</p>
+  </div>
+
+<% if current_user.user_type != "manager" %>
+  <div class="field">
+    <%= f.label :status %><br>
+    <% if @bug.status == nil || @bug.status == "" %>
+    <%= "New"%>
+		
+   	<%else%>
+    	 <%= @bug.status%>
+   <%end%>
+  </div>
+  <%end%>
+
+
+  <% if current_user.user_type == "qa" %>
+  <div class="field">
+   <label>Assigned To:</label>
+         <div class="actions">
+   <%= f.select(:assigned_to ,options_from_collection_for_select(@users,  :id, :name,:selected => @bug.assigned_to)) %>
+  </div>
+  </div>
+  <% end %>
+  
+ 
+
+   <div class="actions">
+    <%= f.submit "Create a Bug" %>
+  </div>
+<% end %>

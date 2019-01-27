@@ -1,6 +1,9 @@
 <h1>Editing Bug</h1>
+<% if current_user.user_type == "developer"%>
+<%= render 'form_dev' %>
+<%else%>
+<%= render 'form_qa' %>
+<%end%>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @bug %> |
-<%= link_to 'Back', bugs_path %>
+<%= link_to 'Show', @bug,{:style=>'color:#0000FF;font-size:20px'} %> ___
+<%= link_to 'Back', bugs_path,{:style=>'color:#0000FF;font-size:20px'} %>

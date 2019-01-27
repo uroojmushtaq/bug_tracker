@@ -1,43 +1,60 @@
 <!-- <p id="notice"><%= notice %></p> -->
-
-<p>
+<div class = "bugshow">
+  <p class = "paraClass" >
   <strong>Title:</strong>
   <%= @bug.title %>
 </p>
 
-<p>
+<p class = "paraClass">
   <strong>Description:</strong>
   <%= @bug.description %>
 </p>
 
-<p>
+<p class = "paraClass">
+  <strong>Project:</strong>
+  <%= @bug.project_id %>
+</p>
+
+<p class = "paraClass">
   <strong>Deadline:</strong>
   <%= @bug.deadline %>
 </p>
 
-<p>
+<p class = "paraClass">
   <strong>Image:</strong>
-  <%= image_tag(@bug.image.url) if @bug.image.exists? %>
+  <%= image_tag(@bug.image.url, :style => "border: 1px solid grey;max-width:80px;") if @bug.image.exists? %>
 </p>
 
-<p>
+<p class = "paraClass">
   <strong>Bug type:</strong>
-  <% if @bug.bug_type == "1" %>
+  <% if @bug.bug_type == "bug" %>
     Bug
   <%  else %>
     Feature
   <% end %>
 </p>
 
-<p>
+<p class = "paraClass">
   <strong>Status:</strong>
+  <% if @bug.status == nil %>
+  <%= "New" %>
+  <% else %>
   <%= @bug.status %>
+  <% end %>
 </p>
 
-<p>
+<p class = "paraClass">
   <strong>Assigned to:</strong>
+  <% if @bug.assigned_to == nil %>
+  <%= "N/A" %>
+  <% else %>
   <%= @bug.assigned_to %>
+  <% end %>
 </p>
 
-<%= link_to 'Edit', edit_bug_path(@bug) %> |
-<%= link_to 'Back', bugs_path %>
+
+<%= link_to 'Back', bugs_path,{:style=>'color:#0000FF;font-size:20px'} %>
+<% if current_user.user_type != "manager"%>
+<%= link_to 'Edit', edit_bug_path(@bug),{:style=>'color:#0000FF;font-size:20px'} %>   
+<%end%>
+</div>

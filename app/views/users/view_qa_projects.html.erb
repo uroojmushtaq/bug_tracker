@@ -1,0 +1,23 @@
+<h1>View Projects</h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Project Name</th>
+      <th>Created By</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if @user.projects.any? %>
+          <% @user.projects.each do |project| %>
+      <tr>
+        <td><%= @user.name %></td>
+	        <td><%= project.project_name %></td>
+	        <td><%= project.created_by %></td>
+	       
+      </tr>
+       <%end%>
+        <% end %>
+  </tbody>
+</table>

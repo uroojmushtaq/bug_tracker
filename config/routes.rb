@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :projects
   resources :users
   resources :sessions
-root  'users#home'
+  root  'users#home'
   
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new",  :as => "login"
@@ -12,7 +12,8 @@ root  'users#home'
   match '/view_developers',       to: 'users#view_developers', via: 'get'
   match '/view_qa_list',           to: 'users#view_qa_list', via: 'get'
   match '/details',                to: 'users#details', via: 'get'
-  #match '/edit/:id',                to: 'users#edit', via: 'get'
+  match '/view_qa_projects/:id',   to: 'users#view_qa_projects', 
+  as:'view_qa_projects', via: 'get'
 
   # get '/users/view_developers'
 

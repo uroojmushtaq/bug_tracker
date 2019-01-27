@@ -1,33 +1,26 @@
-<%= form_for(@bug) do |f| %>
-  <% if @bug.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@bug.errors.count, "error") %> prohibited this bug from being saved:</h2>
 
-      <ul>
-      <% @bug.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="signup">
+  <%= form_for(@bug) do |f| %>
+   <%= render 'shared/error_messages', object: f.object %>
+
 
   <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.label :title, class: "control-label" %><br>
+    <%= f.text_field :title, class: "form-control", :required => true %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_field :description %>
+    <%= f.text_field :description , class: "form-control", :required => true%>
   </div>
 
    <div class="field">
      <label>Project Name:</label><br>
-      <%= f.select(:project_id ,options_from_collection_for_select(@projects, :id, :project_name))%>
+      <%= f.select(:project_id ,options_from_collection_for_select(@projects, :id, :project_name), :required => true)%>
   </div>
 
   <div class="field">
     <%= f.label :deadline %><br>
-    <%= f.datetime_select :deadline %>
+    <%= f.datetime_select :deadline , :required => true%>
   </div>
   <div class="field">
     <%= f.label :image %><br>
@@ -36,21 +29,23 @@
   <div class="field">
     <%= f.label :bug_type %><br>
     <%= f.select :bug_type, options_for_select(bug_options), { prompt: 'Select type' },
-    :onchange => "myfunction();" %>
+    :onchange => "myfunction();", :required => true %>
   </div>
 
-
+<% if current_user.user_type != "manager" %>
   <div class="field">
     <%= f.label :status %><br>
     <%= f.select :status, options_for_select([[]]), { prompt: 'Select status' }
      %>
   </div>
+  <%end%>
 
 
-  <% if current_user.user_type == "3" %>
-  <div class="field">
-    <%= f.label :assigned_to %><br>
-    <%= f.number_field :assigned_to %>
+  <% if current_user.user_type == "qa" %>
+   <div class="field">
+     <label>Assigned To:</label>
+        <%= f.select(:assigned_to ,options_from_collection_for_select(@users, :id, :name)) %>
+
   </div>
   <% end %>
   
@@ -58,3 +53,8 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<%= link_to 'Back', bugs_path,{:style=>'color:#0000FF;font-size:20px'}  %>
+
+
+ </div>

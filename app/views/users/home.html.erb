@@ -1,1 +1,8 @@
-<h1>Welcome to bug tracking system</h1>
+<h1 style="font-size: 40px;margin-top: 50px;text-align: center;">Welcome to bug tracking system</h1>
+
+<div style="width: 50%; margin-left: 400px;margin-top: 20px "><p style="font-size: 20px; text-align: center;line-height: 30px">&nbsp;Here you can manage bugs in your application. Manager can create bugs in projects. Qualtiy assurance engineers can also create bug and they can assign certain bugs to developers. Developers are there to resolve the assign bugs in the application. Manager as well as QA, can also create feature in projects. QA can then assign developers to complete these features. So that's how the application works.
+	<% if !(current_user) %>
+ If you want to use this app, <a href="/users/new" style="color: #0000FF">Sign up now!</a>
+<%end%>
+</p>
+</div>

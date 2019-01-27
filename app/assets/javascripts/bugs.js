@@ -4,14 +4,10 @@ function myfunction(){
     //alert(selectedValue);
 
     if(selectedValue == 'Bug'){
-    	//$('#bug_status option[value="knownValue"]').text('New Option Text');
-
 		$('#bug_status').append('<option value="New" selected="selected">New</option>');
 		$('#bug_status').append('<option value="Started" selected="selected">Started</option>');
 		$('#bug_status').append('<option value="Resolved" selected="selected">Resolved</option>');
 
-    	// $("#bug_status").val("Started");
-    	// $("#bug_status").val("Resolved");
     }else{
     	$('#bug_status').append('<option value="New" selected="selected">New</option>');
 		$('#bug_status').append('<option value="Started" selected="selected">Started</option>');

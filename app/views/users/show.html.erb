@@ -1,21 +1,27 @@
 <!-- <p id="notice"><%= notice %></p> -->
+<div class="signup">
+  <h1>Manage Profile</h1>
+  <p class = "paraClass">
+  <strong>User ID:</strong>
+  <%= @user.id %>
+</p>
 
-<p>
+<p class = "paraClass">
   <strong>Name:</strong>
   <%= @user.name %>
 </p>
 
-<p>
-  <strong>Email</strong>
+<p class = "paraClass">
+  <strong>Email:</strong>
   <%= @user.email %>
 </p>
 
-<p>
+<p class = "paraClass">
   <strong>Job Title:</strong>
   <%= @user.user_type %>
 </p>
 
- <p>
+ <p class = "paraClass">
   <strong>Image:</strong>
   <%= image_tag(@user.image.url, :style => "border: 1px solid grey;max-width:80px;") %>
 </p>
@@ -23,5 +29,7 @@
 
 
 
-<%= link_to 'Back', users_path %>
-<%= link_to 'Edit', edit_user_path %>
+<%= link_to 'Back', root_path,{:style=>'color:#0000FF;font-size:20px'} %> __
+<%= link_to 'Edit', edit_user_path,{:style=>'color:#0000FF;font-size:20px'} %>
+
+</div>
