@@ -1,13 +1,14 @@
+<div class="signup">
 <%= form_for(@bug) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="field">
     <%= f.label :title, class: "control-label" %><br>
-    <%= f.text_field :title, class: "control-label", :required => true   %>
+    <%= f.text_field :title, class: "form-control", :required => true   %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_field :description %>
+    <%= f.text_field :description, class: "form-control", :required => true %>
   </div>
 
    <div class="field">
@@ -60,6 +61,9 @@
  
 
    <div class="actions">
-    <%= f.submit "Create a Bug" %>
+    <%= f.submit "Update Bug" %>
   </div>
 <% end %>
+<%= link_to 'Show', @bug,{:style=>'color:#0000FF;font-size:20px'} %> ___
+<%= link_to 'Back', bugs_path,{:style=>'color:#0000FF;font-size:20px'} %>
+</div>

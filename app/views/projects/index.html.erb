@@ -1,6 +1,7 @@
 <!-- <p id="notice"><%= notice %></p> -->
 
 <h1>Listing Projects</h1>
+<%= will_paginate @projects, :page_links => false %>
 
 <table class="table table-hover">
   <thead>
@@ -13,21 +14,21 @@
   </thead>
 
   <tbody>
-    <% @projects.each do |project| %>
+   <% @projects.each do |project| %>
        
-      <tr>
+      <tr>  
         <td><%= project.project_name %></td>
         <td><%= project.user.try(:name) %></td>
 
         <td><%= project.created_by %></td>
         <td><%= link_to 'Show', project %>  
         </td> 
-         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         <!-- <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
       <% end %>
    
   </tbody>
 </table>
-
+<%= will_paginate %>
 <br>
 

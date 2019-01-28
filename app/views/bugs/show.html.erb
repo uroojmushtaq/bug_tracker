@@ -1,6 +1,16 @@
 <!-- <p id="notice"><%= notice %></p> -->
 <div class = "bugshow">
-  <p class = "paraClass" >
+ <% if @bug.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bug.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @bug.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>  <p class = "paraClass" >
   <strong>Title:</strong>
   <%= @bug.title %>
 </p>

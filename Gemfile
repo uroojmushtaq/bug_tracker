@@ -14,7 +14,6 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'sorcery'
-gem 'kaminari'
 
 # gem 'paperclip'
 gem "paperclip", "~> 5.1"
@@ -22,6 +21,8 @@ gem 'bootstrap'
 gem 'bootstrap-sass'
 gem 'sprockets'
 gem 'protected_attributes'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

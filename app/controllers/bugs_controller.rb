@@ -5,9 +5,9 @@ class BugsController < ApplicationController
   # GET /bugs.json
   def index
     if(current_user.user_type == "developer")
-      @bugs = current_user.bugs
+      @bugs = current_user.bugs.paginate(page: params[:page],:per_page => 5)
     else
-    @bugs = Bug.all
+    @bugs = Bug.all.paginate(page: params[:page],:per_page => 5)
   
     end
   end

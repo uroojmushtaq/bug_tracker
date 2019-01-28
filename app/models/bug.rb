@@ -9,5 +9,9 @@ class Bug < ActiveRecord::Base
   :content_type => { :content_type => "image/png" },
   :size => { :in => 0..100.kilobytes }
 
+  validates :title,length: { minimum: 2 }, presence: true
+
   validates_uniqueness_of :title
+ self.per_page = 5
 end
+WillPaginate.per_page = 5

@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
 
   has_many :bugs, foreign_key: "assigned_to"
 
-  has_one :project_manager, foreign_key: "created_by"
 
 	has_attached_file :image
 
@@ -35,4 +34,6 @@ class User < ActiveRecord::Base
   validates :image,presence: true
   validates :email, uniqueness: true
 
+self.per_page = 5
 end
+WillPaginate.per_page = 5

@@ -29,11 +29,11 @@ else
 end
 
 def view_developers
-  @users = User.where(:user_type => "developer")
+  @users = User.where(:user_type => "developer").paginate(page: params[:page],:per_page => 5)
 end
 
 def view_qa_list
-   @users = User.where(:user_type => "qa")
+   @users = User.where(:user_type => "qa").paginate(page: params[:page],:per_page => 5)
 end
 
  def view_qa_projects
